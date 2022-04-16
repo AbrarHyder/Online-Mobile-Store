@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Cart Page</h1>
+    <div id="cartCheck">
+
+    </div>
+</body>
+<script>
+
+var cartData = JSON.parse(localStorage.getItem("cartData"));
+
+var sumTotal = cartData.reduce(function(sum,ele,index,arr){
+    return sum + Number(ele.price);
+},0);
+
+var total = cartData.length;
+document.querySelector("p").innerText ='You have +" ";
+    mobileData.forEach((cartItm,cartIndex) => {
+    var box = document.createElement("div");
+    box.setAttribute("class","box")
+
+    var img = document.createElement("img");
+    img.src = cartItm.image_url;
+
+    var name = document.createElement("p");
+    name.innerText = cartItm.name;
+
+    var price = document.createElement("p");
+    price.innerText = cartItm.price;
+
+    var rating = document.createElement("p");
+    rating.innerText = cartItm.rating;
+
+    var cartButton = document.createElement("button");
+    cartButton.innerText="REMOVE FROM CART";
+
+    cartButton.addEventListener("click", function(){
+        cartData.splice(cartIndex,1)
+        
+        
+        localStorage.setItem("cartData", JSON.stringify(cartData));
+        window.location.reload();
+
+    });
+
+    box.append(img,name,price,rating,cartButton);
+    document.querySelector("#cartCheck").append(box)
+
+
+
+
+
+
+    });
+</script>
+</html>
